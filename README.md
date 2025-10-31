@@ -1,17 +1,17 @@
 # Simple Todo App
 
-Give a brief description of the project here. Feel free to give it a different name.
+This app is called the Simple Todo App. This app is meant to be used for listing out tasks and other items that need attention and puts them in a list with a box to check them off as completed and a delet button if such tasks need to be deleted.
 
 ## Functionality
 
-Give a more detailed explanation of the project and its functionality.
+Users can click on the "Add Todo" button to create a task that need to be completed. In addition there is a calender feature that allows users to choose the date that a specific task needs to be completed as well.
 
 ## Technology
 
-Give a description of the technologies and techniques used. Pictures, GIFs, or screenshots that detail the project features are recommended.
+The tech stack is HTML, CSS, JavaScript
 
 ## Deployment
 
 This project is deployed on GitHub Pages:
 
-- ADD LINK HERE
+https://carvin-se-96.github.io/se_project_todo-app/
