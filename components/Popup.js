@@ -21,7 +21,7 @@ class Popup {
     document.removeEventListener("keyup", this._handleEscapeClose);
   }
   setEventListeners() {
-    this._popupCloseBtn.addEventListener("mousedown", (evt) => {
+    this._popupCloseBtn.addEventListener("click", (evt) => {
       const clickedOverlay = evt.target === this._popupElement;
       const clickedClose = evt.target.closest(".popup__close-button");
       if (clickedOverlay || clickedClose) {

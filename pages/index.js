@@ -16,8 +16,22 @@ const todoCounter = new TodoCounter(initialTodos, ".counter__text");
 
 const addTodoPopup = new PopupWithForm({
   popupSelector: "#add-todo-popup",
-  handleFormSubmit: () => {},
-});
+  handleFormSubmit: (inputValues) => {
+    const name = inputValues.name;
+    const dateInput = inputValues.date;
+
+    
+    const date = new Date(dateInput);
+    date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
+  
+    const id = uuidv4();
+    const values = { name, date, id, completed: false };
+
+    renderTodo(values);
+    todoCounter.updateTotal(true);
+    addTodoPopup.close();
+    newTodoValidator.resetValidation(); }
+  });
 addTodoPopup.setEventListeners();
 
 function handleCheck(completed) {
@@ -40,15 +54,14 @@ const generateTodo = (data) => {
 const section = new Section({
   items: initialTodos,
   renderer: (item) => {
-    const todoElement = generateTodo(item);
-    section.addItem(todoElement);
+    renderTodo(item);
   },
   containerSelector: ".todos__list",
 });
 
 const renderTodo = (values) => {
   const todo = generateTodo(values);
-  todosList.append(todo);
+  section.addItem(todo);
 };
 
 section.renderItems();
@@ -57,21 +70,7 @@ addTodoButton.addEventListener("click", () => {
   addTodoPopup.open();
 });
 
-addTodoForm.addEventListener("submit", (evt) => {
-  evt.preventDefault();
-  const name = evt.target.name.value;
-  const dateInput = evt.target.date.value;
 
-  const date = new Date(dateInput);
-  date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
-
-  const id = uuidv4();
-  const values = { name, date, id, completed: false };
-  renderTodo(values);
-  todoCounter.updateTotal(true);
-  addTodoPopup.close();
-  newTodoValidator.resetValidation();
-});
 
 const newTodoValidator = new FormValidator(validationConfig, addTodoForm);
 newTodoValidator.enableValidation();
